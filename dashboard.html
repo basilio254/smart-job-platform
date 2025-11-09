@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <div class_="container">
+        <h2>Welcome, {{ current_user.username }}!</h2>
+        <p>Enter your skills below to get job recommendations. The more skills you add, the better the match.</p>
+        
+        <div class="skill-container">
+            <label for="skills-input">Enter skills (comma-separated):</label>
+            <textarea id="skills-input" rows="4" placeholder="e.g., Python, Flask, SQL, Data Analysis, React, leadership">{{ current_skills | join(', ') }}</textarea>
+        </div>
+
+        <button id="recommend-btn">Get Recommendations</button>
+
+        <h3>Your Recommended Jobs:</h3>
+        <div id="loading-spinner" style="display: none;">
+            <p>🧠 Thinking... (this may take a few seconds)</p>
+        </div>
+        <ul id="results-list">
+            <li>Your results will appear here.</li>
+        </ul>
+    </div>
+    
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+{% endblock %}
